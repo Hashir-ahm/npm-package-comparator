@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Card } from 'antd';
+import { useEffect, useState } from 'react';
 import { Line } from '@ant-design/plots';
 import { getPackageData } from '../../apiService';
 import './downloads.css';
 import { ChartData } from 'chart.js';
 
-interface DownloadsProps {
-  selectedValues: string[];
-}
+// interface DownloadsProps {
+//   selectedValues: string[];
+// }
 
 const Downloads = () => {
   const [chartData, setChartData] = useState<ChartData<'line'>>({
