@@ -1,0 +1,13 @@
+.space{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.card2{
+    width: 70%;
+    border-radius:1px ;
+    height: 589px;
+    align-items: center;
+}
