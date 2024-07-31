@@ -52,7 +52,10 @@ export interface PackageData {
       starsCount:number;
     };
     npm:{
-      downloads:number;
+      downloads: {
+        date: string,
+        count: number
+      }
     };
   };
   evaluation:{
