@@ -31,10 +31,7 @@ const Better: React.FC<BetterProps> = ({ selectedValues }) => {
           console.log('One or both packages not found in response.');
           return;
         }
-
-        // Compare the two packages based on arbitrary criteria
-        // For simplicity, we'll assume the "better" package is the one with the higher downloads, stars, and health score.
-
+        
         const pkg1Score =
         pkg1.evaluation.quality.health +
         pkg1.evaluation.popularity.downloadsCount +
