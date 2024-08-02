@@ -24,7 +24,8 @@ const Comparison = ({ selectedValues }: ComparisonProps) => {
 
       try {
         const packagesData = await getPackageData(selectedValues);
-        
+        console.log('Fetched data:', packagesData);
+
         const [pkg1, pkg2] = [packagesData[selectedValues[0]], packagesData[selectedValues[1]]];
 
         if (!pkg1 || !pkg2) {
