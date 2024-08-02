@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
 import './comparison.css';
@@ -6,15 +6,15 @@ import { getPackageData } from '../../apiService';
 
 interface DataType {
   key: string;
-  name: React.ReactNode;
-  age: React.ReactNode;
+  data1: React.ReactNode;
+  data2: React.ReactNode;
 }
 
 interface ComparisonProps {
   selectedValues: string[];
 }
 
-const Comparison: React.FC<ComparisonProps> = ({ selectedValues }) => {
+const Comparison = ({ selectedValues }: ComparisonProps) => {
   const [data, setData] = useState<DataType[]>([]);
   const [columns, setColumns] = useState<TableProps<DataType>['columns']>([]);
 
@@ -24,7 +24,7 @@ const Comparison: React.FC<ComparisonProps> = ({ selectedValues }) => {
 
       try {
         const packagesData = await getPackageData(selectedValues);
-        // console.log('Fetched data:', packagesData);
+        console.log('Fetched data:', packagesData);
 
         const [pkg1, pkg2] = [packagesData[selectedValues[0]], packagesData[selectedValues[1]]];
 
@@ -42,12 +42,12 @@ const Comparison: React.FC<ComparisonProps> = ({ selectedValues }) => {
           },
           {
             title: `${pkg1.collected.metadata.name} (${pkg1.collected.metadata.version})`,
-            dataIndex: 'name',
+            dataIndex: 'data1',
             width: '40%',
           },
           {
             title: `${pkg2.collected.metadata.name} (${pkg2.collected.metadata.version})`,
-            dataIndex: 'age',
+            dataIndex: 'data2',
             width: '40%',
           },
         ]);
@@ -55,42 +55,42 @@ const Comparison: React.FC<ComparisonProps> = ({ selectedValues }) => {
         setData([
           {
             key: 'Description',
-            name: pkg1.collected.metadata.description || 'N/A',
-            age: pkg2.collected.metadata.description || 'N/A',
+            data1: pkg1.collected.metadata.description || 'N/A',
+            data2: pkg2.collected.metadata.description || 'N/A',
           },
           {
             key: 'Keywords',
-            name: (pkg1.collected.metadata.keywords || []).map((keyword, index) => (
+            data1: (pkg1.collected.metadata.keywords || []).map((keyword, index) => (
               <Tag color="blue" key={index}>{keyword}</Tag>
             )),
-            age: (pkg2.collected.metadata.keywords || []).map((keyword, index) => (
+            data2: (pkg2.collected.metadata.keywords || []).map((keyword, index) => (
               <Tag color="green" key={index}>{keyword}</Tag>
             )),
           },
           {
             key: 'Repository',
-            name: pkg1.collected.metadata.repository.type || 'N/A',
-            age: pkg2.collected.metadata.repository.type || 'N/A',
+            data1: pkg1.collected.metadata.repository.type || 'N/A',
+            data2: pkg2.collected.metadata.repository.type || 'N/A',
           },
           {
             key: 'License',
-            name: <Tag color="yellow">{pkg1.collected.metadata.license}</Tag>,
-            age: <Tag color="yellow">{pkg2.collected.metadata.license}</Tag>,
+            data1: <Tag color="yellow">{pkg1.collected.metadata.license}</Tag>,
+            data2: <Tag color="yellow">{pkg2.collected.metadata.license}</Tag>,
           },
           {
             key: 'Last Modified Date',
-            name: pkg1.collected.metadata.date || 'N/A',
-            age: pkg2.collected.metadata.date || 'N/A',
+            data1: pkg1.collected.metadata.date || 'N/A',
+            data2: pkg2.collected.metadata.date || 'N/A',
           },
           {
             key: 'Authors/Publishers',
-            name: pkg1.collected.metadata.author?.name || 'N/A',
-            age: pkg2.collected.metadata.author?.name || 'N/A',
+            data1: pkg1.collected.metadata.author?.name || 'N/A',
+            data2: pkg2.collected.metadata.author?.name || 'N/A',
           },
           {
             key: 'Maintainers',
-            name: pkg1.collected.metadata.maintainers.username || 'N/A',
-            age: pkg2.collected.metadata.maintainers.username || 'N/A',
+            data1: pkg1.collected.metadata.maintainers[0].username || 'N/A',
+            data2: pkg2.collected.metadata.maintainers[0].username || 'N/A',
           },
         ]);
       } catch (error) {

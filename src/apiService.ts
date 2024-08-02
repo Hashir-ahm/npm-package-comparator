@@ -44,9 +44,9 @@ export interface PackageData {
       author?: {
         name: string;
       };
-      maintainers:{
+      maintainers:[{
         username:string;
-      };
+      }];
     };
     github:{
       starsCount:number;

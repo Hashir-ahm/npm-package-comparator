@@ -3,8 +3,7 @@ import './searchbar.css';
 import { Button, Card, Select, Space, Alert } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd';
-import debounce from 'lodash.debounce';
-import {getAutocompleteSuggestions } from '../../apiService';
+import { getAutocompleteSuggestions } from '../../apiService';
 
 const SearchBar = ({ onLoadingChange, onSelectedValuesChange, onShowComparison }: any) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
@@ -12,7 +11,7 @@ const SearchBar = ({ onLoadingChange, onSelectedValuesChange, onShowComparison }
   const [options, setOptions] = useState<SelectProps['options']>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchSuggestions = debounce(async (query: string) => {
+  const fetchSuggestions = async (query: string) => {
     if (query) {
       setLoading(true);
       try {
@@ -28,7 +27,7 @@ const SearchBar = ({ onLoadingChange, onSelectedValuesChange, onShowComparison }
         setLoading(false);
       }
     }
-  }, 300);
+  };
 
   const handleSearch = (value: string) => {
     fetchSuggestions(value);
