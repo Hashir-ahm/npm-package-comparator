@@ -1,32 +1,28 @@
-import axios from 'axios';
-// interface packages{
-// analyzedAt : string,
-// name: string
-// }
+// import axios from 'axios';
 
 // Function to search for npm packages
 export const searchNpmPackages = async (query: string) => {
-  const response = await axios.get(`https://api.npms.io/v2/search?q=${query}`);
-  return response.data;
+  const response = await fetch(`https://api.npms.io/v2/search?q=${query}`);
+  return response.json();
 };
 
 // Function to fetch autocomplete suggestions from npms.io API
 export const getAutocompleteSuggestions = async (query: string) => {
-  const response = await axios.get(`https://api.npms.io/v2/search/suggestions?q=${query}`);
-  return response.data;
+  const response = await fetch(`https://api.npms.io/v2/search/suggestions?q=${query}`);
+  return response.json();
 };
 
 // Function to fetch package details from GitHub
 export const getGithubRepo = async (owner: string, repo: string) => {
-  const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`);
-  return response.data;
+  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+  return response.json();
 };
 
 const API_BASE_URL = 'https://registry.npmjs.org';
 
 export const getPackageDetails = async (packageName: string) => {
-  const response = await axios.get(`${API_BASE_URL}/${packageName}`);
-  return response.data;
+  const response = await fetch(`${API_BASE_URL}/${packageName}`);
+  return response.json();
 };
 
 export interface PackageData {
