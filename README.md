@@ -2,6 +2,8 @@
 
 Compare two npm packages side by side and get a recommendation for which one to use.
 
+> Built during my internship at [Emumba](https://emumba.com).
+
 **Live demo:** https://npm-package-comparator.vercel.app
 
 ## Features
