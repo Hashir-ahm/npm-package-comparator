@@ -4,7 +4,6 @@ import SearchBar from './components/searchbar/searchbar';
 import Comparison from './components/comparison/comparison'; 
 import Downloads from './components/downloads/downloads';
 import Better from './components/better/better';
-import Footer from './components/footer/footer';
 import { getPackageData } from './apiService'; 
 
 const App = () => {
@@ -57,7 +56,6 @@ const App = () => {
           <Better selectedValues={selectedValues} />
         </div>
       )}
-      <Footer />
     </div>
   );
 };

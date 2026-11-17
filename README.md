@@ -36,9 +36,6 @@ src/
     comparison/            Comparison table
     downloads/             Downloads chart
     better/                Recommendation card
-    navbar/, footer/
+    navbar/
 ```
 
-## License
-
-[MIT](LICENSE)
