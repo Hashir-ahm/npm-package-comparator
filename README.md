@@ -1,30 +1,44 @@
-# React + TypeScript + Vite
+# NPM Package Comparator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Compare two npm packages side by side and get a recommendation for which one to use.
 
-Currently, two official plugins are available:
+**Live demo:** https://npm-package-comparator.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Search with autocomplete** — find any package on npm as you type (debounced)
+- **Side-by-side comparison** — version, description, keywords, license, author, maintainers, last release and more
+- **Downloads chart** — download trends for both packages
+- **Recommendation** — scores both packages on health, downloads and GitHub stars and highlights the better choice
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech stack
 
-- Configure the top-level `parserOptions` property like this:
+React 18 · TypeScript · Vite · Ant Design · Chart.js (`react-chartjs-2`) · Ant Design Charts
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+**Data sources:** [npms.io API](https://api-docs.npms.io/) (search, suggestions, quality and popularity scores) · [npm registry](https://registry.npmjs.org) · [GitHub API](https://docs.github.com/rest) (stars)
+
+## Run locally
+
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Then open the URL Vite prints (usually http://localhost:5173).
+
+## Project structure
+
+```
+src/
+  apiService.ts            API calls (npms.io, npm registry, GitHub)
+  components/
+    searchbar/             Package search with autocomplete
+    comparison/            Comparison table
+    downloads/             Downloads chart
+    better/                Recommendation card
+    navbar/, footer/
+```
+
+## License
+
+[MIT](LICENSE)
